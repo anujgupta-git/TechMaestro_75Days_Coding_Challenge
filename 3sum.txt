@@ -1,0 +1,38 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+
+        Arrays.sort(nums);
+        Set<List<Integer>> res = new HashSet<List<Integer>>();
+
+        for (int i = 0; i < nums.length; i++){
+
+            int currele = nums[i];
+            int totalSum  = 0;
+            int leftPointer = i+1;
+            int rightPointer = nums.length-1;
+
+            while(leftPointer < rightPointer){
+
+                totalSum = currele + nums[leftPointer]+nums[rightPointer];
+
+                if (totalSum == 0){
+
+                    List<Integer> tripletArray = Arrays.asList(currele,nums[leftPointer],nums[rightPointer]);
+                    leftPointer++;
+                    rightPointer--;
+                    res.add(tripletArray);
+
+                }
+                else if(totalSum > 0){
+
+                    rightPointer--;
+                }
+                else{
+
+                    leftPointer++;
+                }
+            }
+        }
+        return new ArrayList<>(res);
+    }
+}
